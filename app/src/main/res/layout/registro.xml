@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/Titulo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Registro"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_dark"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="70dp"
+            tools:layout_editor_absoluteY="114dp" />
+
+
+        <EditText
+            android:id="@+id/propietario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:hint="Propietario"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="81dp"
+            tools:layout_editor_absoluteY="232dp" />
+
+        <EditText
+            android:id="@+id/placa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:hint="Placa"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="81dp"
+            tools:layout_editor_absoluteY="232dp" />
+
+        <EditText
+            android:id="@+id/Clase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:hint="Clase"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="81dp"
+            tools:layout_editor_absoluteY="232dp" />
+
+        <EditText
+            android:id="@+id/marca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:hint="Marca"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="81dp"
+            tools:layout_editor_absoluteY="232dp" />
+
+        <EditText
+            android:id="@+id/carnet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:hint="Carnet"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="81dp"
+            tools:layout_editor_absoluteY="232dp" />
+
+        <EditText
+            android:id="@+id/color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:hint="Color"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="81dp"
+            tools:layout_editor_absoluteY="232dp" />
+
+        <EditText
+            android:id="@+id/crpva"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:hint="CRPVA"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="81dp"
+            tools:layout_editor_absoluteY="232dp" />
+
+        <Button
+            android:id="@+id/registro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginRight="76dp"
+            android:background="@android:color/holo_green_light"
+            android:text="Registrar"
+            android:textColor="@android:color/background_light"
+            android:textStyle="bold"
+
+            tools:layout_editor_absoluteY="393dp" />
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
