@@ -21,10 +21,6 @@
             android:label="@string/title_activity_bienvenido"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".registro"
-            android:label="@string/title_activity_registro"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".misAutos"
             android:label="@string/title_activity_mis_autos"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -35,7 +31,8 @@
         <activity
             android:name=".parqueo"
             android:label="@string/title_activity_parqueo"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".registro1"></activity>
     </application>
 
 </manifest>
