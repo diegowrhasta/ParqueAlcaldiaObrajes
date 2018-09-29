@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "54996546396",
+    "firebase_url": "https://parquealcaldiaobrajes.firebaseio.com",
+    "project_id": "parquealcaldiaobrajes",
+    "storage_bucket": "parquealcaldiaobrajes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:54996546396:android:0b9ab5765cd44900",
+        "android_client_info": {
+          "package_name": "com.example.diego.parquealcaldiaobrajes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "54996546396-mk9g6a4hnt5ai9lrntj7gme7kjqk16d5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.diego.parquealcaldiaobrajes",
+            "certificate_hash": "180ed94a529de4ec19cb988349eb02fb5f615b27"
+          }
+        },
+        {
+          "client_id": "54996546396-nq51qhm3k2g5ppm31nts1ofj1ep4sqel.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXWn69aDcItEw-dJZe0dK3zbEN9tC0HsI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "54996546396-nq51qhm3k2g5ppm31nts1ofj1ep4sqel.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
