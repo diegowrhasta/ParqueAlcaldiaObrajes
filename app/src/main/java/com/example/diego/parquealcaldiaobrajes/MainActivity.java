@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void ingresar(View view)
     {
         Log.e("Hello","Eres gay");
+        //Change
     }
     @Override
     public void onClick(View view) {
