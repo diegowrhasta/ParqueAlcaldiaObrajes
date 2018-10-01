@@ -4,8 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,16 +13,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 //Aca haremos el registro de los datos
 public class registro1 extends AppCompatActivity implements View.OnClickListener {
@@ -54,14 +50,7 @@ public class registro1 extends AppCompatActivity implements View.OnClickListener
         //initializing firebase authentication object
         SelectImagen=(ImageButton) findViewById(R.id.imagen);
         mStorage= FirebaseStorage.getInstance().getReference();   //Storage de fotos
-        SelectImagen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent galleryIntent =new Intent(Intent.ACTION_GET_CONTENT);
-                galleryIntent.setType("image/*");
-                startActivityForResult(galleryIntent,GALLERY_REQUEST);
-            }
-        });
+
         firebaseAuth = FirebaseAuth.getInstance();
 
         getSupportActionBar().hide();
@@ -106,15 +95,7 @@ public class registro1 extends AppCompatActivity implements View.OnClickListener
         buttonSave.setOnClickListener(this);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==GALLERY_REQUEST && resultCode==RESULT_OK){
-            imagenUri=data.getData();
 
-            SelectImagen.setImageURI(imagenUri);  //imagen :)
-        }
-    }
 
 
 
@@ -132,67 +113,24 @@ public class registro1 extends AppCompatActivity implements View.OnClickListener
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         final String correo= user.getEmail();
 
-        mProgreso.setMessage("Guardando Datos");
-        mProgreso.show();
-        //Getting values from database
-
-        if (imagenUri!=null){
+        if (!TextUtils.isEmpty(Propietario)) {
 
 
-            StorageReference foto=mStorage.child("Fotos").child(imagenUri.getLastPathSegment());
-            foto.putFile(imagenUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+            String link="NULL";
+            //Objeto de la informacion del usuario, lleva a la clase informacion para guardar los datos
+              UserInformation userInformation = new UserInformation(Propietario, Placa ,Clase ,Marca,carnet,Color,crpva,correo,link);
+            //Guardamos los datos dentro del Id que inicio sesion
+            databaseReference.child(user.getUid()).setValue(userInformation);
 
+                    Toast.makeText(getApplicationContext(), "Registrado", Toast.LENGTH_LONG).show();
 
-
-
-
-
-                    String link= taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-                    mProgreso.dismiss();
-
-                    //Objeto de la informacion del usuario, lleva a la clase informacion para guardar los datos
-                    UserInformation userInformation = new UserInformation(Propietario, Placa ,Clase ,Marca,carnet,Color,crpva,correo,link);
-
-                    //getting the current logged in user
-
-
-                    databaseReference.child(user.getUid()).setValue(userInformation);
-
-                    mProgreso.dismiss();
-
-                    Toast.makeText(getApplicationContext(), "Listo", Toast.LENGTH_LONG).show();
-                }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception exception) {
-                            //if the upload is not successfull
-                            //hiding the progress dialog
-                            mProgreso.dismiss();
-
-                            //and displaying error message
-                            Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    })
-                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            //calculating progress percentage
-                            double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-
-                            //displaying percentage in progress dialog
-                            mProgreso.setMessage("Uploaded " + ((int) progress) + "%. ..");
-                        }
-                    });
 
 
 
         }
 
-
     }
+
 
 
 
@@ -215,8 +153,8 @@ public class registro1 extends AppCompatActivity implements View.OnClickListener
 
         if(view == buttonSave){
             saveUserInformation();
-
             startActivity(new Intent(this, bienvenido.class));
+
         }
 
     }
