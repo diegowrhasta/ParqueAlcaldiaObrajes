@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void userLogin(){
+        Log.e("Hello","Eres gay");
         String email = editTextEmail.getText().toString().trim();
         String password  = editTextPassword.getText().toString().trim();
 
@@ -102,8 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         }
                         else {
-
-
+                            Toast.makeText(MainActivity.this, "Datos Incorrectos", Toast.LENGTH_SHORT).show();
                             return;
                         }
 
@@ -113,11 +113,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void ingresar(View view)
-    {
-        Log.e("Hello","Eres gay");
-        //Change
-    }
     @Override
     public void onClick(View view) {
         if(view == buttonSignIn){
