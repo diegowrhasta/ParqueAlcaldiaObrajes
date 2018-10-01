@@ -32,7 +32,8 @@
             android:name=".parqueo"
             android:label="@string/title_activity_parqueo"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".registro1"></activity>
+        <activity android:name=".registro1" />
+        <activity android:name=".RegistroBien" />
     </application>
 
 </manifest>
