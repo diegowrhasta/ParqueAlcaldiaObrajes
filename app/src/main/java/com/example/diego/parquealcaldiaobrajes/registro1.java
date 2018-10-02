@@ -41,7 +41,8 @@ public class registro1 extends AppCompatActivity implements View.OnClickListener
     //our new views
     private EditText editTextPropietario, editTextPlaca, editTextClase, editTextMarca, editTextcarnet, editTextColor,editTextCrpva;
     private Button buttonSave;
-
+    //declaramos variables de firebase
+    private DatabaseReference databaseCliente,databaseAuto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,9 @@ public class registro1 extends AppCompatActivity implements View.OnClickListener
         //initializing firebase authentication object
         SelectImagen=(ImageButton) findViewById(R.id.imagen);
         mStorage= FirebaseStorage.getInstance().getReference();   //Storage de fotos
-
+        //iniciamos las variables de firebase para el cliente y auto
+        databaseCliente = FirebaseDatabase.getInstance().getReference("Cliente");
+        databaseAuto = FirebaseDatabase.getInstance().getReference("Auto");
         firebaseAuth = FirebaseAuth.getInstance();
 
         getSupportActionBar().hide();
@@ -115,12 +118,19 @@ public class registro1 extends AppCompatActivity implements View.OnClickListener
 
         if (!TextUtils.isEmpty(Propietario)) {
 
-
             String link="NULL";
-            //Objeto de la informacion del usuario, lleva a la clase informacion para guardar los datos
-              UserInformation userInformation = new UserInformation(Propietario, Placa ,Clase ,Marca,carnet,Color,crpva,correo,link);
-            //Guardamos los datos dentro del Id que inicio sesion
-            databaseReference.child(user.getUid()).setValue(userInformation);
+            String idCliente = databaseCliente.push().getKey();
+            databaseCliente = FirebaseDatabase.getInstance().getReference("Cliente");
+            //objeto que indica los datos especificos del auto
+            Auto auto = new Auto(Placa,Clase ,Marca,Color,crpva,link);
+            //objeto que indica los datos del usuario
+            UserInformation userInformation = new UserInformation(Propietario,carnet,correo);
+            //se ingresan los datos del usuario en la base
+            databaseCliente.child(idCliente).setValue(userInformation);
+            //se genera un codigo para el auto
+            String idAuto = databaseAuto.push().getKey();
+            //se ingrsean los datos del auto
+            databaseCliente.child(idCliente).child(idAuto).setValue(auto);
 
                     Toast.makeText(getApplicationContext(), "Registrado", Toast.LENGTH_LONG).show();
 
